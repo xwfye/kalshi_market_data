@@ -1,0 +1,5 @@
+market_ticker = "FED-23FEB-T4.75"
+channel = "trade"
+rest_endpoint = "trading-api.kalshi.com"
+websocket_endpoint = "wss://trading-api.kalshi.com/trade-api/ws/v2"
+email = "amitesharora1@gmail.com"

@@ -7,5 +7,27 @@ edition = "2021"
 
 [dependencies]
 tokio = { version = "*", features = ["full"] }
-serde = { version = "*" }
+serde = { version = "*", features = ["derive", "std"]  }
 serde_json = { version = "*" }
+tokio-tungstenite = { version = "*", features = ["native-tls", "default", "handshake", "connect"] }
+tungstenite = { version = "*" }
+flume = { version = "*" }
+chrono = { version = "*" }
+reqwest = { version = "*" }
+url = { version = "*" }
+log = { version = "*" }
+toml = { version = "*" }
+futures = { version = "*" }
+futures-util = { version = "*", features = ["sink"] }
+
+[dev-dependencies]
+clap = {version = "*", features = ["derive"]}
+
+
+[lib]
+name = "kalshi_market_data"
+path = "src/lib.rs"
+test = false
+
+[[example]]
+name = "websocket_stream"
