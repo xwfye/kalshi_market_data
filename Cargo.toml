@@ -8,23 +8,21 @@ description = "Connectors for market data on the Kalshi exchange"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-tokio = { version = "*", features = ["full"] }
-serde = { version = "*", features = ["derive", "std"]  }
-serde_json = { version = "*" }
-tokio-tungstenite = { version = "*", features = ["native-tls", "default", "handshake", "connect"] }
-tungstenite = { version = "*" }
-flume = { version = "*" }
-chrono = { version = "*" }
-reqwest = { version = "*" }
-url = { version = "*" }
-log = { version = "*" }
-toml = { version = "*" }
-futures = { version = "*" }
-futures-util = { version = "*", features = ["sink"] }
+tokio = { version = "1.23.0", features = ["full"] }
+serde = { version = "1.0.152", features = ["derive", "std"]  }
+serde_json = { version = "1.0.91" }
+tokio-tungstenite = { version = "0.18.0", features = ["native-tls", "default", "handshake", "connect"] }
+tungstenite = { version = "0.18.0" }
+flume = { version = "0.10.14" }
+chrono = { version = "0.4.23" }
+reqwest = { version = "0.11.13" }
+url = { version = "2.3.1" }
+log = { version = "0.4.17" }
+toml = { version = "0.5.10" }
+futures = { version = "0.3.25" }
+futures-util = { version = "0.3.25", features = ["sink"] }
 
 [dev-dependencies]
-clap = {version = "*", features = ["derive"]}
-
 
 [lib]
 name = "kalshi_market_data"

@@ -10,7 +10,7 @@ use kalshi_market_data::{
         lib::{MarketDataConfig, WebsocketMarketDataClient},
     },
 };
-use serde::{Deserialize};
+use serde::Deserialize;
 use std::env;
 use std::fs;
 
