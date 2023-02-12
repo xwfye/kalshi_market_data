@@ -1,0 +1,4 @@
+market_ticker = "FED-23FEB-T4.75"
+channel = "trade"
+rest_endpoint = "demo-api.kalshi.co"
+websocket_endpoint = "wss://demo-api.kalshi.co/trade-api/ws/v2"

@@ -1,19 +1,29 @@
-pub mod orderbook;
-pub mod series;
-pub mod event;
-pub mod market;
-pub mod trade;
-pub mod history;
-pub mod exchange;
-pub mod lib;
 pub mod error;
+pub mod event;
+pub mod exchange;
+pub mod history;
+pub mod lib;
 pub mod login;
 pub mod logout;
+pub mod market;
+pub mod orderbook;
+pub mod series;
+pub mod trade;
 
-use serde::{Serialize, Deserialize};
+use serde::{Deserialize, Serialize};
 
-
-use self::{event::{EventMessage}, exchange::{ExchangeStatusMessage}, history::{HistoryMessage}, market::{MarketsMessage, MarketMessage}, orderbook::{OrderbookMessage}, series::{SeriesMessage}, trade::{TradesMessage}, error::ErrorMessage, login::LoginMessage, logout::LogoutMessage};
+use self::{
+    error::ErrorMessage,
+    event::EventMessage,
+    exchange::ExchangeStatusMessage,
+    history::HistoryMessage,
+    login::LoginMessage,
+    logout::LogoutMessage,
+    market::{MarketMessage, MarketsMessage},
+    orderbook::OrderbookMessage,
+    series::SeriesMessage,
+    trade::TradesMessage,
+};
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 #[serde(untagged)]

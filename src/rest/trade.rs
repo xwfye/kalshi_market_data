@@ -1,8 +1,6 @@
-use serde::{Deserialize, Serialize};
 use super::lib::RestMarketDataRequest;
-use crate::serializers::{Timestamp, from_iso8601_to_timestamp_nanos};
-
-
+use crate::serializers::{from_iso8601_to_timestamp_nanos, Timestamp};
+use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Trade {
