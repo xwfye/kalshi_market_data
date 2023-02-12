@@ -1,23 +1,27 @@
-use serde::{Deserialize, Serialize};
 use super::lib::RestMarketDataRequest;
-use crate::serializers::{Timestamp, from_iso8601_to_timestamp_nanos};
-
-
+use crate::serializers::{from_iso8601_to_timestamp_nanos, Timestamp};
+use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 #[serde(rename_all = "camelCase")]
-pub struct CustomStrike{
+pub struct CustomStrike {
     additional_prop: String,
 } // TODO: add to markets when Kalshi implements it (it's just a skeleton in the Kalshi API rn)
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
-pub struct Market{
+pub struct Market {
     pub can_close_early: bool,
     pub category: String,
-    #[serde(rename(deserialize = "close_time"), deserialize_with="from_iso8601_to_timestamp_nanos")]
+    #[serde(
+        rename(deserialize = "close_time"),
+        deserialize_with = "from_iso8601_to_timestamp_nanos"
+    )]
     pub close_timestamp: Timestamp,
     pub event_ticker: String,
-    #[serde(rename(deserialize = "expiration_time"), deserialize_with="from_iso8601_to_timestamp_nanos")]
+    #[serde(
+        rename(deserialize = "expiration_time"),
+        deserialize_with = "from_iso8601_to_timestamp_nanos"
+    )]
     pub expiration_timestamp: Timestamp,
     pub expiration_value: String,
     pub last_price: i64,
@@ -25,7 +29,10 @@ pub struct Market{
     pub no_ask: i64,
     pub no_bid: i64,
     pub open_interest: i64,
-    #[serde(rename(deserialize = "open_time"), deserialize_with="from_iso8601_to_timestamp_nanos")]
+    #[serde(
+        rename(deserialize = "open_time"),
+        deserialize_with = "from_iso8601_to_timestamp_nanos"
+    )]
     pub open_timestamp: Timestamp,
     pub previous_price: i64,
     pub previous_yes_ask: i64,
@@ -37,24 +44,22 @@ pub struct Market{
     pub volume: i64,
     pub volume_24h: i64,
     pub yes_ask: i64,
-    pub yes_bid: i64
+    pub yes_bid: i64,
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
-pub struct MarketsMessage{
+pub struct MarketsMessage {
     pub cursor: String,
-    pub markets: Vec<Market>
+    pub markets: Vec<Market>,
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
-pub struct MarketMessage{
-    pub market: Market
+pub struct MarketMessage {
+    pub market: Market,
 }
 
-
-
 #[derive(Serialize, Deserialize, Debug, Clone)]
-pub struct MarketsMessageRequestParams{
+pub struct MarketsMessageRequestParams {
     pub endpoint: String,
     pub limit: i32,
     pub cursor: String,
@@ -63,11 +68,11 @@ pub struct MarketsMessageRequestParams{
     pub max_close_ts: i64,
     pub min_close_ts: i64,
     pub status: String,
-    pub tickers: Vec<String>
+    pub tickers: Vec<String>,
 }
 
-impl RestMarketDataRequest for MarketsMessageRequestParams{
-    fn get_request_url(&self) -> String{
+impl RestMarketDataRequest for MarketsMessageRequestParams {
+    fn get_request_url(&self) -> String {
         let endpoint = self.endpoint.clone();
         let limit = self.limit;
         let cursor = self.cursor.clone();
@@ -82,13 +87,13 @@ impl RestMarketDataRequest for MarketsMessageRequestParams{
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
-pub struct MarketMessageRequestParams{
+pub struct MarketMessageRequestParams {
     pub endpoint: String,
     pub ticker: String,
 }
 
-impl RestMarketDataRequest for MarketMessageRequestParams{
-    fn get_request_url(&self) -> String{
+impl RestMarketDataRequest for MarketMessageRequestParams {
+    fn get_request_url(&self) -> String {
         let endpoint = self.endpoint.clone();
         let ticker = self.ticker.clone();
         format!("https://{endpoint}/trade-api/v2/markets/{ticker}")

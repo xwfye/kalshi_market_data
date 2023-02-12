@@ -1,9 +1,5 @@
+use crate::serializers::{from_timestamp_seconds_to_timestamp_nanos, Timestamp};
 use serde::{Deserialize, Serialize};
-use crate::serializers::{
-    from_timestamp_seconds_to_timestamp_nanos,
-    Timestamp
-};
-
 
 use super::lib::MessageArbitration;
 
@@ -18,8 +14,11 @@ pub struct FillData {
     pub no_price: i64,
     pub count: i64,
     pub action: String,
-    #[serde(rename(deserialize = "ts"), deserialize_with="from_timestamp_seconds_to_timestamp_nanos")]
-    pub timestamp: Timestamp
+    #[serde(
+        rename(deserialize = "ts"),
+        deserialize_with = "from_timestamp_seconds_to_timestamp_nanos"
+    )]
+    pub timestamp: Timestamp,
 }
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
@@ -29,10 +28,10 @@ pub struct FillMessage {
     #[serde(rename(deserialize = "sid"))]
     pub subscription_id: i16,
     #[serde(rename(deserialize = "msg"), flatten)]
-    pub data: FillData
+    pub data: FillData,
 }
 
-impl MessageArbitration for FillMessage{
+impl MessageArbitration for FillMessage {
     fn get_sequence_num(&self) -> u64 {
         self.data.timestamp
     }
