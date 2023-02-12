@@ -2,6 +2,8 @@
 name = "kalshi_market_data"
 version = "0.1.0"
 edition = "2021"
+license-file = "LICENSE"
+description = "Connectors for market data on the Kalshi exchange"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
